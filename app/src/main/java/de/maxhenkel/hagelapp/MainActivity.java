@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton settingsButton;
     private StripeView stripeView;
 
+    private boolean takingPicture;
+
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
         stripeView.setVertical(sharedPreferences.getBoolean("vertical_stripes", false));
 
         stripeView.invalidate();
+
+        takingPicture = false;
     }
 
     private Executor executor = Executors.newSingleThreadExecutor();
@@ -149,9 +153,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void takePicture() {
-        if (areControlsHidden()) {
+        if (takingPicture) {
             return;
         }
+        takingPicture = true;
         hideControls(true);
         File file = createImageFile();
         ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(file).build();
@@ -199,10 +204,6 @@ public class MainActivity extends AppCompatActivity {
             previewView.setVisibility(View.VISIBLE);
             settingsButton.setVisibility(View.VISIBLE);
         }
-    }
-
-    private boolean areControlsHidden() {
-        return previewView.getVisibility() == View.INVISIBLE;
     }
 
     @Override
