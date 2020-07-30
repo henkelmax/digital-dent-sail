@@ -37,6 +37,8 @@ public class StripeView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        canvas.drawColor(Color.WHITE);
+
         if(vertical){
             float stripeSpacing = (float) getWidth() / stripeCount;
 
