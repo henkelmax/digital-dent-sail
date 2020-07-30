@@ -2,12 +2,14 @@
     <string name="app_name">Digitales Dellensegel</string>
     <string name="share_image">Share Image</string>
     <string name="image_taken">Image has been taken</string>
-    <string name="choose_color">Choose</string>
-    <string name="cancel_choose_color">Cancel</string>
+    <string name="choose_color_confirm">Choose</string>
+    <string name="choose_color">Choose a Color</string>
+    <string name="choose_color_cancel">Cancel</string>
     <string name="settings_stripe_count">Stripe Count</string>
     <string name="settings_big_stripe_thickness">Big Stripe Thickness</string>
     <string name="settings_small_stripe_thickness">Small Stripe Thickness</string>
     <string name="settings_vertical_stripes">Vertical Stripes</string>
     <string name="settings_stripe_color">Stripe Color</string>
     <string name="settings_background_color">Background Color</string>
+    <string name="settings_reset">Reset</string>
 </resources>

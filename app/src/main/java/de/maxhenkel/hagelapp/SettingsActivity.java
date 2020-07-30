@@ -3,10 +3,10 @@ package de.maxhenkel.hagelapp;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -14,7 +14,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import top.defaults.colorpicker.ColorPickerPopup;
+import com.skydoves.colorpickerview.ColorPickerDialog;
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -29,6 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
     private Switch verticalStripes;
     private ImageButton stripeColorButton;
     private ImageButton backgroundColorButton;
+    private Button resetButton;
 
     private StripeView stripeView;
 
@@ -152,44 +154,42 @@ public class SettingsActivity extends AppCompatActivity {
 
         stripeColorButton = findViewById(R.id.stripeColorButton);
         stripeColorButton.setOnClickListener(v -> {
-            new ColorPickerPopup.Builder(this)
-                    .initialColor(sharedPreferences.getInt("stripe_color", Color.BLACK))
-                    .enableBrightness(true)
-                    .enableAlpha(false)
-                    .okTitle(getString(R.string.choose_color))
-                    .cancelTitle(getString(R.string.cancel_choose_color))
-                    .showIndicator(true)
-                    .showValue(true)
-                    .build()
-                    .show(v, new ColorPickerPopup.ColorPickerObserver() {
-                        @Override
-                        public void onColorPicked(int color) {
-                            sharedPreferences.edit().putInt("stripe_color", color).apply();
-                            stripeView.setStripeColor(color);
-                            stripeView.invalidate();
-                        }
-                    });
+            new ColorPickerDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert)
+                    .setTitle(R.string.choose_color)
+                    .setPositiveButton(R.string.choose_color_confirm, (ColorEnvelopeListener) (envelope, fromUser) -> {
+                        sharedPreferences.edit().putInt("stripe_color", envelope.getColor()).apply();
+                        stripeView.setStripeColor(envelope.getColor());
+                        stripeView.invalidate();
+                    })
+                    .setNegativeButton(R.string.choose_color_cancel, (dialogInterface, i) -> {
+                        dialogInterface.dismiss();
+                    })
+                    .attachAlphaSlideBar(false)
+                    .attachBrightnessSlideBar(true)
+                    .show();
         });
 
         backgroundColorButton = findViewById(R.id.backgroundColorButton);
         backgroundColorButton.setOnClickListener(v -> {
-            new ColorPickerPopup.Builder(this)
-                    .initialColor(sharedPreferences.getInt("background_color", Color.WHITE))
-                    .enableBrightness(true)
-                    .enableAlpha(false)
-                    .okTitle(getString(R.string.choose_color))
-                    .cancelTitle(getString(R.string.cancel_choose_color))
-                    .showIndicator(true)
-                    .showValue(true)
-                    .build()
-                    .show(v, new ColorPickerPopup.ColorPickerObserver() {
-                        @Override
-                        public void onColorPicked(int color) {
-                            sharedPreferences.edit().putInt("background_color", color).apply();
-                            stripeView.setBackgroundColor(color);
-                            stripeView.invalidate();
-                        }
-                    });
+            new ColorPickerDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert)
+                    .setTitle(R.string.choose_color)
+                    .setPositiveButton(R.string.choose_color_confirm, (ColorEnvelopeListener) (envelope, fromUser) -> {
+                        sharedPreferences.edit().putInt("background_color", envelope.getColor()).apply();
+                        stripeView.setBackgroundColor(envelope.getColor());
+                        stripeView.invalidate();
+                    })
+                    .setNegativeButton(R.string.choose_color_cancel, (dialogInterface, i) -> {
+                        dialogInterface.dismiss();
+                    })
+                    .attachAlphaSlideBar(false)
+                    .attachBrightnessSlideBar(true)
+                    .show();
+        });
+
+        resetButton = findViewById(R.id.resetButton);
+        resetButton.setOnClickListener(v -> {
+            sharedPreferences.edit().clear().apply();
+            setLayout();
         });
     }
 

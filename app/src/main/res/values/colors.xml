@@ -6,4 +6,5 @@
     <color name="colorAccent">#6ab7ff</color>
     <color name="colorTextPrimary">#000000</color>
     <color name="colorTextSecondary">#808080</color>
+    <color name="colorWarning">#f44336</color>
 </resources>

@@ -3,12 +3,14 @@
     <string name="app_name">Digitales Dellensegel</string>
     <string name="share_image">Bild Teilen</string>
     <string name="image_taken">Bild wurde aufgenommen</string>
-    <string name="choose_color">Auswählen</string>
-    <string name="cancel_choose_color">Abbrechen</string>
+    <string name="choose_color_confirm">Auswählen</string>
+    <string name="choose_color">Farbe Auswählen</string>
+    <string name="choose_color_cancel">Abbrechen</string>
     <string name="settings_stripe_count">Streifen Anzahl</string>
     <string name="settings_big_stripe_thickness">Große Streifen Breite</string>
     <string name="settings_small_stripe_thickness">Kleine Streifen Breite</string>
     <string name="settings_vertical_stripes">Vertikale Streifen</string>
     <string name="settings_stripe_color">Streifen Farbe</string>
     <string name="settings_background_color">Hintergrund Farbe</string>
+    <string name="settings_reset">Zurücksetzen</string>
 </resources>
