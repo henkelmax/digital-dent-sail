@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
                 runOnUiThread(() -> {
-                    Toast.makeText(MainActivity.this, "Image has been taken", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, R.string.image_taken, Toast.LENGTH_LONG).show();
                     previewView.setVisibility(View.VISIBLE);
                     vibrate();
                     Intent intent = new Intent(MainActivity.this, ImageActivity.class);

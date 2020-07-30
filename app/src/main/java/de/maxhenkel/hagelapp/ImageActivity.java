@@ -55,6 +55,6 @@ public class ImageActivity extends AppCompatActivity {
         share.setType("image/*");
         Log.d(getPackageName(), path);
         share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(path)));
-        startActivity(Intent.createChooser(share, "Share Image"));
+        startActivity(Intent.createChooser(share, getString(R.string.share_image)));
     }
 }

@@ -155,8 +155,8 @@ public class SettingsActivity extends AppCompatActivity {
                     .initialColor(sharedPreferences.getInt("stripe_color", Color.BLACK))
                     .enableBrightness(true)
                     .enableAlpha(false)
-                    .okTitle("Choose")
-                    .cancelTitle("Cancel")
+                    .okTitle(getString(R.string.choose_color))
+                    .cancelTitle(getString(R.string.cancel_choose_color))
                     .showIndicator(true)
                     .showValue(true)
                     .build()
@@ -170,5 +170,5 @@ public class SettingsActivity extends AppCompatActivity {
                     });
         });
     }
-    
+
 }
