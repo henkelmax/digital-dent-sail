@@ -23,7 +23,19 @@
         android:layout_marginBottom="20dp"
         android:importantForAccessibility="no"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-    </androidx.camera.view.PreviewView>/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="6dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/settingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/settings"
+        android:layout_margin="20dp"
+        android:backgroundTint="@android:color/white"
+        app:borderWidth="0dp"
+        android:elevation="6dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

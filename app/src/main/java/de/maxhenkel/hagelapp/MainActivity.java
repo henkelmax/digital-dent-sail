@@ -30,6 +30,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.io.File;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageCapture imageCapture;
     private PreviewView previewView;
+    private FloatingActionButton settingsButton;
     private StripeView stripeView;
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
         previewView = findViewById(R.id.camera);
+        settingsButton = findViewById(R.id.settingsButton);
         stripeView = findViewById(R.id.stripeView);
 
         sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
@@ -74,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         });
+
+        settingsButton.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
 
         stripeView.setOnClickListener(v -> {
             takePicture();
@@ -137,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void takePicture() {
-        previewView.setVisibility(View.INVISIBLE);
+        hideControls(true);
         File file = createImageFile();
         ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(file).build();
         imageCapture.takePicture(outputFileOptions, executor, new ImageCapture.OnImageSavedCallback() {
@@ -145,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
             public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
                 runOnUiThread(() -> {
                     Toast.makeText(MainActivity.this, R.string.image_taken, Toast.LENGTH_LONG).show();
-                    previewView.setVisibility(View.VISIBLE);
+                    hideControls(false);
                     vibrate();
                     Intent intent = new Intent(MainActivity.this, ImageActivity.class);
                     intent.putExtra("path", file.getAbsolutePath());
@@ -173,6 +178,16 @@ public class MainActivity extends AppCompatActivity {
             v.vibrate(VibrationEffect.createOneShot(125, VibrationEffect.DEFAULT_AMPLITUDE));
         } else {
             v.vibrate(125);
+        }
+    }
+
+    private void hideControls(boolean hide) {
+        if (hide) {
+            previewView.setVisibility(View.INVISIBLE);
+            settingsButton.setVisibility(View.INVISIBLE);
+        } else {
+            previewView.setVisibility(View.VISIBLE);
+            settingsButton.setVisibility(View.VISIBLE);
         }
     }
 
