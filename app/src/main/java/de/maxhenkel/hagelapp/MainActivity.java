@@ -149,6 +149,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void takePicture() {
+        if (areControlsHidden()) {
+            return;
+        }
         hideControls(true);
         File file = createImageFile();
         ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(file).build();
@@ -196,6 +199,10 @@ public class MainActivity extends AppCompatActivity {
             previewView.setVisibility(View.VISIBLE);
             settingsButton.setVisibility(View.VISIBLE);
         }
+    }
+
+    private boolean areControlsHidden() {
+        return previewView.getVisibility() == View.INVISIBLE;
     }
 
     @Override
