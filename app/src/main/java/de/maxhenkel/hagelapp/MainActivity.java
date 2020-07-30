@@ -62,7 +62,13 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        WindowManager.LayoutParams layout = getWindow().getAttributes();
+        layout.screenBrightness = 1F;
+        getWindow().setAttributes(layout);
+
         setContentView(R.layout.activity_main);
+
         previewView = findViewById(R.id.camera);
         settingsButton = findViewById(R.id.settingsButton);
         stripeView = findViewById(R.id.stripeView);
