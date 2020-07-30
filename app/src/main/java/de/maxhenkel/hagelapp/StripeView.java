@@ -15,6 +15,7 @@ public class StripeView extends View {
     private Paint thinPaint;
 
     private int stripeCount;
+    private boolean vertical;
 
     public StripeView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -36,13 +37,25 @@ public class StripeView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        float stripeSpacing = (float) getHeight() / stripeCount;
+        if(vertical){
+            float stripeSpacing = (float) getWidth() / stripeCount;
 
-        for (int i = 0; i <= stripeCount; i++) {
-            if (i % 3 == 0) {
-                canvas.drawLine(0F, i * stripeSpacing, getHeight(), i * stripeSpacing, thickPaint);
-            } else {
-                canvas.drawLine(0F, i * stripeSpacing, getWidth(), i * stripeSpacing, thinPaint);
+            for (int i = 0; i <= stripeCount; i++) {
+                if (i % 3 == 0) {
+                    canvas.drawLine(i * stripeSpacing, 0F, i * stripeSpacing, getHeight(), thickPaint);
+                } else {
+                    canvas.drawLine(i * stripeSpacing, 0F, i * stripeSpacing, getHeight(), thinPaint);
+                }
+            }
+        }else{
+            float stripeSpacing = (float) getHeight() / stripeCount;
+
+            for (int i = 0; i <= stripeCount; i++) {
+                if (i % 3 == 0) {
+                    canvas.drawLine(0F, i * stripeSpacing, getHeight(), i * stripeSpacing, thickPaint);
+                } else {
+                    canvas.drawLine(0F, i * stripeSpacing, getWidth(), i * stripeSpacing, thinPaint);
+                }
             }
         }
     }
@@ -62,5 +75,9 @@ public class StripeView extends View {
     public void setStripeColor(int stripeColor) {
         thinPaint.setColor(stripeColor);
         thickPaint.setColor(stripeColor);
+    }
+
+    public void setVertical(boolean vertical) {
+        this.vertical = vertical;
     }
 }

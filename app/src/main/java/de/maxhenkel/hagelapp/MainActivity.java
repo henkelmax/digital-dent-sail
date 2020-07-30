@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         stripeView.setBigStripeThickness(sharedPreferences.getInt("stripe_thickness_big", 16));
         stripeView.setThinStripeThickness(sharedPreferences.getInt("stripe_thickness_small", 5));
         stripeView.setStripeColor(sharedPreferences.getInt("stripe_color", Color.BLACK));
+        stripeView.setVertical(sharedPreferences.getBoolean("vertical_stripes", false));
 
         stripeView.invalidate();
     }

@@ -1,20 +1,18 @@
 package de.maxhenkel.hagelapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import top.defaults.colorpicker.ColorPickerPopup;
 
@@ -28,6 +26,7 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView stripeThicknessBigText;
     private SeekBar stripeThicknessSmall;
     private TextView stripeThicknessSmallText;
+    private Switch verticalStripes;
     private Button colorButton;
 
     private StripeView stripeView;
@@ -44,9 +43,18 @@ public class SettingsActivity extends AppCompatActivity {
         }
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        setContentView(R.layout.activity_settings);
-
         sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+
+        setLayout();
+    }
+
+    private void setLayout() {
+        boolean vertical = sharedPreferences.getBoolean("vertical_stripes", false);
+        if (vertical) {
+            setContentView(R.layout.activity_settings_vertical);
+        } else {
+            setContentView(R.layout.activity_settings_horizontal);
+        }
 
         stripeView = findViewById(R.id.stripeView);
 
@@ -131,6 +139,16 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        verticalStripes = findViewById(R.id.verticalStripes);
+        verticalStripes.setChecked(vertical);
+        stripeView.setVertical(vertical);
+        verticalStripes.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            sharedPreferences.edit().putBoolean("vertical_stripes", isChecked).apply();
+            stripeView.setVertical(isChecked);
+            stripeView.invalidate();
+            setLayout();
+        });
+
         colorButton = findViewById(R.id.colorButton);
         colorButton.setOnClickListener(v -> {
             new ColorPickerPopup.Builder(this)
@@ -151,8 +169,6 @@ public class SettingsActivity extends AppCompatActivity {
                         }
                     });
         });
-
     }
-
-
+    
 }
