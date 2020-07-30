@@ -7,7 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -27,7 +27,8 @@ public class SettingsActivity extends AppCompatActivity {
     private SeekBar stripeThicknessSmall;
     private TextView stripeThicknessSmallText;
     private Switch verticalStripes;
-    private Button colorButton;
+    private ImageButton stripeColorButton;
+    private ImageButton backgroundColorButton;
 
     private StripeView stripeView;
 
@@ -149,8 +150,8 @@ public class SettingsActivity extends AppCompatActivity {
             setLayout();
         });
 
-        colorButton = findViewById(R.id.colorButton);
-        colorButton.setOnClickListener(v -> {
+        stripeColorButton = findViewById(R.id.stripeColorButton);
+        stripeColorButton.setOnClickListener(v -> {
             new ColorPickerPopup.Builder(this)
                     .initialColor(sharedPreferences.getInt("stripe_color", Color.BLACK))
                     .enableBrightness(true)
@@ -165,6 +166,27 @@ public class SettingsActivity extends AppCompatActivity {
                         public void onColorPicked(int color) {
                             sharedPreferences.edit().putInt("stripe_color", color).apply();
                             stripeView.setStripeColor(color);
+                            stripeView.invalidate();
+                        }
+                    });
+        });
+
+        backgroundColorButton = findViewById(R.id.backgroundColorButton);
+        backgroundColorButton.setOnClickListener(v -> {
+            new ColorPickerPopup.Builder(this)
+                    .initialColor(sharedPreferences.getInt("background_color", Color.WHITE))
+                    .enableBrightness(true)
+                    .enableAlpha(false)
+                    .okTitle(getString(R.string.choose_color))
+                    .cancelTitle(getString(R.string.cancel_choose_color))
+                    .showIndicator(true)
+                    .showValue(true)
+                    .build()
+                    .show(v, new ColorPickerPopup.ColorPickerObserver() {
+                        @Override
+                        public void onColorPicked(int color) {
+                            sharedPreferences.edit().putInt("background_color", color).apply();
+                            stripeView.setBackgroundColor(color);
                             stripeView.invalidate();
                         }
                     });

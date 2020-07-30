@@ -98,16 +98,62 @@
             android:layout_weight="1"
             android:text="@string/settings_vertical_stripes" />
 
-        <Button
-            android:id="@+id/colorButton"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="10dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimary"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:text="@string/settings_stripe_color" />
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="24sp"
+                android:layout_weight="1"
+                android:text="@string/settings_stripe_color" />
+
+            <ImageButton
+                android:id="@+id/stripeColorButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="5"
+                android:backgroundTint="@color/colorPrimary"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:src="@drawable/brush" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="24sp"
+                android:layout_weight="1"
+                android:text="@string/settings_background_color" />
+
+            <ImageButton
+                android:id="@+id/backgroundColorButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="5"
+                android:backgroundTint="@color/colorPrimary"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:src="@drawable/brush" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

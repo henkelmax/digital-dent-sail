@@ -9,4 +9,5 @@
     <string name="settings_small_stripe_thickness">Small Stripe Thickness</string>
     <string name="settings_vertical_stripes">Vertical Stripes</string>
     <string name="settings_stripe_color">Stripe Color</string>
+    <string name="settings_background_color">Background Color</string>
 </resources>
