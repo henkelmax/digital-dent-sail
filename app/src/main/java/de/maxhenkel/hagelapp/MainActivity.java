@@ -17,7 +17,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -162,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
                 runOnUiThread(() -> {
-                    Toast.makeText(MainActivity.this, R.string.image_taken, Toast.LENGTH_LONG).show();
                     hideControls(false);
                     vibrate();
                     Intent intent = new Intent(MainActivity.this, ImageActivity.class);
