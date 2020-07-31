@@ -3,6 +3,7 @@ package de.maxhenkel.hagelapp;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -74,7 +75,6 @@ public class SettingsActivity extends AppCompatActivity {
                 sharedPreferences.edit().putInt("stripe_count", progress).apply();
                 stripeCountText.setText(String.valueOf(progress));
                 stripeView.setStripeCount(progress);
-                stripeView.invalidate();
             }
 
             @Override
@@ -101,7 +101,6 @@ public class SettingsActivity extends AppCompatActivity {
                 sharedPreferences.edit().putInt("stripe_thickness_big", progress).apply();
                 stripeThicknessBigText.setText(String.valueOf(progress));
                 stripeView.setBigStripeThickness(progress);
-                stripeView.invalidate();
             }
 
             @Override
@@ -128,7 +127,6 @@ public class SettingsActivity extends AppCompatActivity {
                 sharedPreferences.edit().putInt("stripe_thickness_small", progress).apply();
                 stripeThicknessSmallText.setText(String.valueOf(progress));
                 stripeView.setThinStripeThickness(progress);
-                stripeView.invalidate();
             }
 
             @Override
@@ -148,18 +146,18 @@ public class SettingsActivity extends AppCompatActivity {
         verticalStripes.setOnCheckedChangeListener((buttonView, isChecked) -> {
             sharedPreferences.edit().putBoolean("vertical_stripes", isChecked).apply();
             stripeView.setVertical(isChecked);
-            stripeView.invalidate();
             setLayout();
         });
 
         stripeColorButton = findViewById(R.id.stripeColorButton);
+        int stripeColor = sharedPreferences.getInt("stripe_color", Color.BLACK);
+        stripeView.setStripeColor(stripeColor);
         stripeColorButton.setOnClickListener(v -> {
             new ColorPickerDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert)
                     .setTitle(R.string.choose_color)
                     .setPositiveButton(R.string.choose_color_confirm, (ColorEnvelopeListener) (envelope, fromUser) -> {
                         sharedPreferences.edit().putInt("stripe_color", envelope.getColor()).apply();
                         stripeView.setStripeColor(envelope.getColor());
-                        stripeView.invalidate();
                     })
                     .setNegativeButton(R.string.choose_color_cancel, (dialogInterface, i) -> {
                         dialogInterface.dismiss();
@@ -170,13 +168,14 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         backgroundColorButton = findViewById(R.id.backgroundColorButton);
+        int backgroundColor = sharedPreferences.getInt("background_color", Color.WHITE);
+        stripeView.setBackgroundColor(backgroundColor);
         backgroundColorButton.setOnClickListener(v -> {
             new ColorPickerDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert)
                     .setTitle(R.string.choose_color)
                     .setPositiveButton(R.string.choose_color_confirm, (ColorEnvelopeListener) (envelope, fromUser) -> {
                         sharedPreferences.edit().putInt("background_color", envelope.getColor()).apply();
                         stripeView.setBackgroundColor(envelope.getColor());
-                        stripeView.invalidate();
                     })
                     .setNegativeButton(R.string.choose_color_cancel, (dialogInterface, i) -> {
                         dialogInterface.dismiss();

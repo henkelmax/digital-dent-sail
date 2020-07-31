@@ -67,27 +67,33 @@ public class StripeView extends View {
 
     public void setBigStripeThickness(int thickness) {
         thickPaint.setStrokeWidth(thickness);
+        invalidate();
     }
 
     public void setThinStripeThickness(int thickness) {
         thinPaint.setStrokeWidth(thickness);
+        invalidate();
     }
 
     public void setStripeCount(int stripeCount) {
         this.stripeCount = stripeCount;
+        invalidate();
     }
 
     public void setStripeColor(int stripeColor) {
         thinPaint.setColor(stripeColor);
         thickPaint.setColor(stripeColor);
+        invalidate();
     }
 
     public void setVertical(boolean vertical) {
         this.vertical = vertical;
+        invalidate();
     }
 
     @Override
     public void setBackgroundColor(int backgroundColor) {
         this.backgroundColor = backgroundColor;
+        invalidate();
     }
 }

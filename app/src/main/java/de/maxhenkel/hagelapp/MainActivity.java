@@ -113,8 +113,6 @@ public class MainActivity extends AppCompatActivity {
         stripeView.setBackgroundColor(sharedPreferences.getInt("background_color", Color.WHITE));
         stripeView.setVertical(sharedPreferences.getBoolean("vertical_stripes", false));
 
-        stripeView.invalidate();
-
         takingPicture = false;
     }
 
