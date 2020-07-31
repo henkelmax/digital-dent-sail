@@ -13,4 +13,5 @@
     <string name="settings_stripe_color">Streifen Farbe</string>
     <string name="settings_background_color">Hintergrund Farbe</string>
     <string name="settings_reset">Zurücksetzen</string>
+    <string name="version">v%1$s (%2$d)</string>
 </resources>
