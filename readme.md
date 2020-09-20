@@ -13,4 +13,4 @@ A simple Android app that helps you identify and capture dents in your car.
 - Dark mode compatible
 - English and German language
 
-![](images/overview.jpg) ![](images/settings.jpg)
+![](images/screenshots.png)
