@@ -34,7 +34,6 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
       - name: Upload debug app
-        id: upload-release-asset 
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
@@ -42,7 +41,6 @@ jobs:
           asset_name: digital_dent_sail_${{ steps.get_version.outputs.VERSION }}_debug.apk
           asset_content_type: application/vnd.android.package-archive
       - name: Upload release app
-        id: upload-release-asset 
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
