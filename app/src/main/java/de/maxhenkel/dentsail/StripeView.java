@@ -1,4 +1,4 @@
-package de.maxhenkel.hagelapp;
+package de.maxhenkel.dentsail;
 
 import android.content.Context;
 import android.graphics.Canvas;

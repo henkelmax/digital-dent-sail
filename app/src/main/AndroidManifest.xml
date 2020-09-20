@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.maxhenkel.hagelapp">
+    package="de.maxhenkel.dentsail">
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -16,15 +16,15 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name="de.maxhenkel.dentsail.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".ImageActivity" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name="de.maxhenkel.dentsail.SettingsActivity" />
+        <activity android:name="de.maxhenkel.dentsail.ImageActivity" />
+        <activity android:name="de.maxhenkel.dentsail.MainActivity"/>
     </application>
     
 </manifest>

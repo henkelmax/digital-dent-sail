@@ -1,4 +1,4 @@
-package de.maxhenkel.hagelapp;
+package de.maxhenkel.dentsail;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -24,7 +24,7 @@
         android:layout_weight="10"
         android:orientation="vertical">
 
-        <de.maxhenkel.hagelapp.StripeView
+        <de.maxhenkel.dentsail.StripeView
             android:id="@+id/stripeView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
