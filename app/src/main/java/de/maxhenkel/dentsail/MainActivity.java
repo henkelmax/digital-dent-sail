@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
                 imageCapture = builder.setTargetRotation(getWindowManager().getDefaultDisplay().getRotation()).build();
                 cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis, imageCapture);
-                preview.setSurfaceProvider(previewView.createSurfaceProvider());
+                preview.setSurfaceProvider(previewView.getSurfaceProvider());
             } catch (ExecutionException | InterruptedException e) {
             }
         }, ContextCompat.getMainExecutor(this));
